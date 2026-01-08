@@ -1,5 +1,5 @@
 import flet as ft
-
+from datetime import datetime
 
 
 def main(page: ft.Page):
@@ -17,8 +17,9 @@ def main(page: ft.Page):
 
 
         if name:
+            current_time = datetime.now().strftime("%Y:%m:%d - %H:%M:%S")
             text_hello.color = None
-            text_hello.value = f'Hello {name}'
+            text_hello.value = f'{current_time}- Hello {name}'
             name_input.value = None
         else:
             text_hello.value = 'Введите имя!'
@@ -40,7 +41,7 @@ def main(page: ft.Page):
     thememode_button = ft.IconButton(icon=ft.Icons.BRIGHTNESS_7, on_click=switch_icon)
 
 
-    page.add(text_hello,  name_input ,  elevated_button, thememode_button, text_time)
+    page.add(text_hello,  name_input ,  elevated_button, thememode_button, )
 
 
 
