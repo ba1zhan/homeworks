@@ -8,6 +8,10 @@ def main(page: ft.Page):
     text_hello = ft.Text(value='Hello World')
     text_time = ft.TimePicker
 
+    greeting_history = []
+
+    history_text = ft.Text('История приветсвий')
+
     # text_hello.value = 'Hello'
     # text_hello.color = ft.Colors.GREEN_900
 
@@ -21,6 +25,9 @@ def main(page: ft.Page):
             text_hello.color = None
             text_hello.value = f'{current_time}- Hello {name}'
             name_input.value = None
+
+            greeting_history.append(name)
+            print(greeting_history)
         else:
             text_hello.value = 'Введите имя!'
             text_hello.color = ft.Colors.RED
