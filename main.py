@@ -28,6 +28,7 @@ def main(page: ft.Page):
 
             greeting_history.append(name)
             print(greeting_history)
+            history_text.value = f"История приветсвий:\n" + ", \n".join(greeting_history)
         else:
             text_hello.value = 'Введите имя!'
             text_hello.color = ft.Colors.RED
@@ -40,6 +41,14 @@ def main(page: ft.Page):
         else:
             page.theme_mode = ft.ThemeMode.DARK
 
+    def clear_history(_):
+        print(greeting_history)
+        greeting_history.clear()
+        print(greeting_history)
+        history_text.value = 'История приветсвий:'
+
+    clear_button = ft.IconButton(icon=ft.Icons.DELETE, on_click=clear_history)
+
 
     elevated_button = ft.ElevatedButton('send', on_click=text_name, icon=ft.Icons.SEND)
 
@@ -48,7 +57,7 @@ def main(page: ft.Page):
     thememode_button = ft.IconButton(icon=ft.Icons.BRIGHTNESS_7, on_click=switch_icon)
 
 
-    page.add(text_hello,  name_input ,  elevated_button, thememode_button, )
+    page.add(text_hello,  name_input ,  elevated_button, thememode_button, clear_button, history_text)
 
 
 
