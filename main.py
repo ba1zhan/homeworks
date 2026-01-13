@@ -47,17 +47,31 @@ def main(page: ft.Page):
         print(greeting_history)
         history_text.value = 'История приветсвий:'
 
+    def delete_last(_):
+        if greeting_history:
+            greeting_history.pop()
+            text_hello.value = "Последнее приветствие удалено"
+            text_hello.color = None
+        else:
+            text_hello.value = "История пуста!"
+            text_hello.color = ft.Colors.RED
+
     clear_button = ft.IconButton(icon=ft.Icons.DELETE, on_click=clear_history)
 
 
     elevated_button = ft.ElevatedButton('send', on_click=text_name, icon=ft.Icons.SEND)
 
-    name_input = ft.TextField(label='Введите что нибудь!', on_submit=text_name)
+    name_input = ft.TextField(label='Введите что нибудь!', on_submit=text_name, expand=True)
 
     thememode_button = ft.IconButton(icon=ft.Icons.BRIGHTNESS_7, on_click=switch_icon)
+    
+    delete_button = ft.ElevatedButton('Удалить последнее', icon=ft.Icons.REMOVE_CIRCLE_OUTLINE,on_click=delete_last)
 
 
-    page.add(text_hello,  name_input ,  elevated_button, thememode_button, clear_button, history_text)
+    main_object = ft.Row([name_input, elevated_button , thememode_button, clear_button])
+
+
+    page.add(text_hello, main_object ,delete_button , history_text)
 
 
 
